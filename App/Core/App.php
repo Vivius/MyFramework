@@ -11,7 +11,7 @@ class App
     /**
      * @var Container
      */
-    protected static $container;
+    private static $container;
 
     public function __construct(Container $container)
     {
