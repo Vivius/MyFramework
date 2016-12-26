@@ -12,7 +12,7 @@ namespace App\Core;
 class Route
 {
     private static $request;
-    const ROUTE_PROPERTY = "route";
+    const ROUTE_PROPERTY = "page";
 
     public function __construct(Request $request)
     {
