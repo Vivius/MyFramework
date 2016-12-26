@@ -9,30 +9,20 @@ namespace App\Core;
 class App
 {
     /**
-     * @var Container
-     */
-    private static $container;
-
-    public function __construct(Container $container)
-    {
-        self::$container = $container;
-    }
-
-    /**
-     * Permet de créer un objet avec l'IOC container.
+     * Permet de créer un objet avec l'IOC Container.
      * @param $dataType
      * @return null|object
      */
     public static function make($dataType) {
-        return self::$container->make($dataType);
+        return Container::getInstance()->make($dataType);
     }
 
     /**
-     * Invoque une méthode d'une classe donnée en remplissant ses paramètres avec les types contenus dans le container.
+     * Invoque une méthode d'une classe donnée en remplissant ses paramètres avec les types contenus dans l'IOC Container si possible.
      * @param $class
      * @param $method
      */
     public static function invoke($class, $method) {
-        self::$container->invoke($class, $method);
+        Container::getInstance()->invoke($class, $method);
     }
 }

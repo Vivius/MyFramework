@@ -4,6 +4,9 @@
  */
 
 use App\Core\Route as Route;
+use App\Core\App as App;
 
-Route::get("test", \App\Http\Controllers\TestController::class, "index");
-Route::get("bonjour", \App\Http\Controllers\TestController::class, "bonjour");
+$route = App::make(Route::class);
+
+$route->get("test", \App\Http\Controllers\TestController::class, "index");
+$route->get("bonjour", \App\Http\Controllers\TestController::class, "bonjour");

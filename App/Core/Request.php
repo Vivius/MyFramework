@@ -5,22 +5,18 @@
 
 namespace App\Core;
 
-class Request
+use App\Models\Model;
+
+class Request extends Model
 {
     private $parameters;
-    private static $instance;
+    private $session;
 
-    private function __construct()
+    public function __construct(Session $session)
     {
-        $this->parameters = array();
+        $this->parameters = [];
+        $this->session = $session;
         $this->collecteParameters();
-    }
-
-    public static function getInstance() {
-        if(is_null(self::$instance))
-            return new Request();
-        else
-            return self::$instance;
     }
 
     /**
@@ -31,10 +27,19 @@ class Request
         $this->parameters = array_merge($this->parameters, $_GET);
     }
 
+    /**
+     * Retourne tous les paramètres de la requête HTTP.
+     * @return array
+     */
     public function all() {
         return $this->parameters;
     }
 
+    /**
+     * Obtient un paramètre spécifique de la requête.
+     * @param $key
+     * @return mixed|null
+     */
     public function get($key) {
         if(key_exists($key, $this->parameters))
             return $this->parameters[$key];
@@ -42,6 +47,10 @@ class Request
             return null;
     }
 
+    /**
+     * Retourne la méthode d'envoi de la requête.
+     * @return mixed
+     */
     public function getMethod() {
         return $_SERVER["REQUEST_METHOD"];
     }
