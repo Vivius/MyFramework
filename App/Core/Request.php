@@ -5,16 +5,22 @@
 
 namespace App\Core;
 
-use App\Models\Model;
-
-class Request extends Model
+class Request
 {
+    /**
+     * Paramètres GET et POST de la requête HTTP.
+     * @var
+     */
     private $parameters;
+
+    /**
+     * Variable de SESSION de la requête HTTP.
+     * @var Session
+     */
     private $session;
 
     public function __construct(Session $session)
     {
-        $this->parameters = [];
         $this->session = $session;
         $this->collecteParameters();
     }
@@ -23,6 +29,7 @@ class Request extends Model
      * Collecte l'ensemble des paramètres reçus par la requête HTTP.
      */
     private function collecteParameters() {
+        $this->parameters = [];
         $this->parameters = array_merge($this->parameters, $_POST);
         $this->parameters = array_merge($this->parameters, $_GET);
     }

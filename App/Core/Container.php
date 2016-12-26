@@ -22,7 +22,6 @@ class Container
 
     /**
      * Paires type/implémentation pour les singletons.
-     * La classe singleton devra posséder la propriété getInstance.
      * @var array
      */
     private $singletonRegistry;
@@ -129,7 +128,7 @@ class Container
     }
 
     /**
-     * Trouve l'implémentation d'un type donné dans les tableaux de types, singletons et closures.
+     * Trouve l'implémentation d'un type donné dans les tableaux de types, singletons et closures...
      * @param $dataType
      * @return null|object
      */
